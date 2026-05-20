@@ -5,9 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.toaf.finance.datos.modelo.CuentaEntity
 import com.toaf.finance.funcionalidades.cuentas.repositorio.RepositorioCuentas
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class CuentasViewModel(private val repositorio: RepositorioCuentas) : ViewModel() {
 
@@ -38,6 +40,24 @@ class CuentasViewModel(private val repositorio: RepositorioCuentas) : ViewModel(
                 nombreCuenta.value = ""
                 saldoInicial.value = ""
                 onExito()
+            }
+        }
+    }
+
+    fun actualizarCuenta(cuenta: CuentaEntity, onCompleto: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repositorio.actualizar(cuenta)
+            withContext(Dispatchers.Main) {
+                onCompleto()
+            }
+        }
+    }
+
+    fun eliminarCuenta(cuenta: CuentaEntity, onCompleto: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repositorio.eliminar(cuenta) // Asegúrate de tener 'eliminar' en tu interfaz de repositorio
+            withContext(Dispatchers.Main) {
+                onCompleto()
             }
         }
     }

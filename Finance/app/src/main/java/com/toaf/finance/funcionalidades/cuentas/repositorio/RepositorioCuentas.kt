@@ -8,4 +8,11 @@ interface RepositorioCuentas {
 
     // Contrato para crear una nueva cuenta
     suspend fun guardarCuenta(cuenta: CuentaEntity)
+
+    // Contrato para actualizar una cuenta existente
+    suspend fun actualizar(cuenta: CuentaEntity)
+
+        // Contrato para eliminar una cuenta
+    suspend fun eliminar(cuenta: CuentaEntity)
+
 }

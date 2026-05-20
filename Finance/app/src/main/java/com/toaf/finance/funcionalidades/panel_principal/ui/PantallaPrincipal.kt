@@ -63,7 +63,7 @@ fun PantallaPrincipal(
             onClick = onIrACuentas,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "Ver Mis Cuentas")
+            Text(text = "VER MIS CUENTAS")
         }
     }
 }

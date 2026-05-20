@@ -11,5 +11,17 @@ class RepositorioCuentasImpl(private val cuentaDao: CuentaDao) : RepositorioCuen
     override suspend fun guardarCuenta(cuenta: CuentaEntity) {
         cuentaDao.insertarCuenta(cuenta)
     }
+
+    // Implementación de actualización de cuenta
+    override suspend fun actualizar(cuenta: CuentaEntity) {
+        cuentaDao.actualizarCuenta(cuenta)
+    }
+
+    // Implementación de eliminación de cuenta
+    override suspend fun eliminar(cuenta: CuentaEntity) {
+        cuentaDao.eliminarCuenta(cuenta)
+    }
+
+
 }
 

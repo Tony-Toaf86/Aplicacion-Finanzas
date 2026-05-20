@@ -18,7 +18,7 @@ import com.toaf.finance.funcionalidades.panel_principal.ui.PantallaPrincipal
 import com.toaf.finance.funcionalidades.panel_principal.ui.PrincipalViewModel
 import com.toaf.finance.funcionalidades.transacciones.repositorio.RepositorioTransaccionesImpl
 import com.toaf.finance.funcionalidades.transacciones.ui.PantallaHistorialTransacciones
-// com.toaf.finance.funcionalidades.transacciones.ui.PantallaTransferencia
+import com.toaf.finance.funcionalidades.transacciones.ui.PantallaTransferencia
 import com.toaf.finance.funcionalidades.transacciones.ui.TransaccionesViewModel
 import com.toaf.finance.ui.theme.FinanceTheme
 
@@ -59,11 +59,11 @@ class MainActivity : ComponentActivity() {
                             }
 
                             "lista_cuentas" -> {
-//                                PantallaListaCuentas(
-//                                    viewModel = cuentasViewModel,
-//                                    onIrACrearCuenta = { pantallaActual = "crear_cuenta" },
-//                                    onVolver = { pantallaActual = "principal" }
-//                                )
+                                PantallaListaCuentas(
+                                    viewModel = cuentasViewModel,
+                                    onIrACrearCuenta = { pantallaActual = "crear_cuenta" },
+                                    onVolver = { pantallaActual = "principal" }
+                                )
                             }
 
                             "crear_cuenta" -> {
@@ -75,10 +75,10 @@ class MainActivity : ComponentActivity() {
                             }
 
                             "transferencia" -> {
-//                                PantallaTransferencia(
-//                                    viewModel = transaccionesViewModel,
-//                                    onVolverAlPanel = { pantallaActual = "principal" }
-//                                )
+                                PantallaTransferencia(
+                                    viewModel = transaccionesViewModel,
+                                    onVolverAlPanel = { pantallaActual = "principal" }
+                                )
                             }
 
                             "historial" -> {
