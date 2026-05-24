@@ -15,7 +15,7 @@ abstract class BaseDatosApp : RoomDatabase() {
     abstract fun cuentaDao(): CuentaDao
     abstract fun transaccionDao(): TransaccionDao
 
-    companion object {
+        companion object {
         // @Volatile asegura que cualquier cambio en la base de datos sea visible para todos los hilos de ejecución de inmediato.
         @Volatile
         private var INSTANCE: BaseDatosApp? = null

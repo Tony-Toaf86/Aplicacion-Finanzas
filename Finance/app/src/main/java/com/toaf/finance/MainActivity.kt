@@ -27,13 +27,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         // Mantiene el diseño extendido hacia las barras de estado
         enableEdgeToEdge()
-
+//        ccomentario
         setContent {
             FinanceTheme {
                 // 1. Inicializamos Room y sus DAOs de forma segura reteniendo la instancia
                 val baseDatos = remember { BaseDatosApp.obtenerBaseDatos(applicationContext) }
                 val cuentaDao = remember { baseDatos.cuentaDao() }
                 val transaccionDao = remember { baseDatos.transaccionDao() }
+
 
                 // 2. Acoplamos las implementaciones de los Repositorios
                 val repositorioCuentas = remember { RepositorioCuentasImpl(cuentaDao) }
