@@ -44,7 +44,7 @@ fun ProfileScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8FAFC))
+            .background(MaterialTheme.colorScheme.background)
             .padding(24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -53,7 +53,7 @@ fun ProfileScreen(
         Box(
             modifier = Modifier
                 .size(92.dp)
-                .background(Color(0xFFEAF4FF), CircleShape),
+                .background(MaterialTheme.colorScheme.secondary, CircleShape),
             contentAlignment = Alignment.Center
         ) {
             Text("👤", fontSize = 40.sp)
@@ -65,13 +65,13 @@ fun ProfileScreen(
             text = userName,
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF0F293D)
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         Text(
             text = email,
             fontSize = 15.sp,
-            color = Color(0xFF526173)
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(modifier = Modifier.height(28.dp))
@@ -79,7 +79,7 @@ fun ProfileScreen(
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(28.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
         ) {
             Column(modifier = Modifier.padding(20.dp)) {
@@ -108,14 +108,14 @@ fun ProfileItem(title: String, value: String) {
         Text(
             text = title,
             fontSize = 13.sp,
-            color = Color(0xFF526173)
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Text(
             text = value,
             fontSize = 17.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF0F293D)
+            color = MaterialTheme.colorScheme.onSurface
         )
 
         Spacer(modifier = Modifier.height(14.dp))

@@ -27,7 +27,7 @@ fun FinanceFormScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8FAFC))
+            .background(MaterialTheme.colorScheme.background)
             .padding(28.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -36,7 +36,7 @@ fun FinanceFormScreen(
         Box(
             modifier = Modifier
                 .size(82.dp)
-                .background(Color(0xFFEAF4FF), CircleShape),
+                .background(MaterialTheme.colorScheme.secondary, CircleShape),
             contentAlignment = Alignment.Center
         ) {
             Text(icon, fontSize = 34.sp)
@@ -48,13 +48,13 @@ fun FinanceFormScreen(
             text = title,
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF0F293D)
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         Text(
             text = subtitle,
             fontSize = 15.sp,
-            color = Color(0xFF526173)
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(modifier = Modifier.height(28.dp))
@@ -62,7 +62,7 @@ fun FinanceFormScreen(
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(28.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
         ) {
             Column(modifier = Modifier.padding(20.dp)) {
@@ -85,8 +85,8 @@ fun FinanceFormScreen(
                         .height(56.dp),
                     shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF2563EB),
-                        contentColor = Color.White
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
                     )
                 ) {
                     Text(buttonText, fontWeight = FontWeight.Bold)
@@ -98,7 +98,7 @@ fun FinanceFormScreen(
                     onClick = onBack,
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Volver", color = Color(0xFF2563EB))
+                    Text("Volver", color = MaterialTheme.colorScheme.primary)
                 }
             }
         }

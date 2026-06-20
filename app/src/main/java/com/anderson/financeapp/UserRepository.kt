@@ -31,7 +31,7 @@ class UserRepository(
             AccountEntity(
                 userId = userId,
                 accountName = "Cuenta principal",
-                balance = 5000.00,
+                balance = 0.00,
                 accountType = "BANCO",
                 cardNumber = ""
             )

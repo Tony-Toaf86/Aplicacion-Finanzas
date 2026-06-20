@@ -42,20 +42,20 @@ fun TransferScreen(userId: Int, onBack: () -> Unit) {
     Column(
         Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8FAFC))
+            .background(MaterialTheme.colorScheme.background)
             .padding(24.dp)
     ) {
         Text(
             text = "Transferir dinero",
             fontSize = 28.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF0F293D)
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         Text(
             text = "Envía dinero a otro usuario registrado",
             fontSize = 15.sp,
-            color = Color(0xFF526173)
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(Modifier.height(18.dp))
@@ -87,7 +87,13 @@ fun TransferScreen(userId: Int, onBack: () -> Unit) {
                     },
                     label = { Text("Correo del destinatario") },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedLabelColor = MaterialTheme.colorScheme.primary,
+                        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 )
 
                 Spacer(Modifier.height(10.dp))
@@ -96,6 +102,8 @@ fun TransferScreen(userId: Int, onBack: () -> Unit) {
                     onClick = {
                         if (receiverEmail.isBlank()) {
                             message = "Ingresa el correo del destinatario"
+                        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(receiverEmail.trim()).matches()) {
+                            message = "Ingresa un correo electrónico válido"
                         } else {
                             scope.launch {
                                 val receiver = repository.findUserByEmail(receiverEmail.trim())
@@ -118,7 +126,10 @@ fun TransferScreen(userId: Int, onBack: () -> Unit) {
                     },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(14.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2563EB))
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    )
                 ) {
                     Text("BUSCAR DESTINATARIO")
                 }
@@ -146,7 +157,13 @@ fun TransferScreen(userId: Int, onBack: () -> Unit) {
                     onValueChange = { amount = it },
                     label = { Text("Monto") },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedLabelColor = MaterialTheme.colorScheme.primary,
+                        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 )
 
                 if (message.isNotEmpty()) {
@@ -196,7 +213,10 @@ fun TransferScreen(userId: Int, onBack: () -> Unit) {
                     },
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF2563EB))
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    )
                 ) {
                     Text("TRANSFERIR")
                 }
@@ -242,7 +262,7 @@ fun SelectableAccountCard(
             .padding(vertical = 5.dp),
         shape = RoundedCornerShape(18.dp),
         colors = CardDefaults.cardColors(
-            containerColor = if (selected) Color(0xFFEAF4FF) else Color.White
+            containerColor = if (selected) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.surface
         )
     ) {
         Row(
@@ -250,14 +270,14 @@ fun SelectableAccountCard(
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Column {
-                Text("$icon ${account.accountName}", fontWeight = FontWeight.Bold)
-                Text(subtitle, fontSize = 13.sp, color = Color(0xFF526173))
+                Text("$icon ${account.accountName}", fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.onSurface)
+                Text(subtitle, fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
 
             Text(
                 text = "L ${String.format("%.2f", account.balance)}",
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF2563EB)
+                color = MaterialTheme.colorScheme.primary
             )
         }
     }

@@ -2,6 +2,7 @@ package com.anderson.financeapp
 
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.activity.compose.BackHandler
 
 @Composable
 fun AppNavigation() {
@@ -9,6 +10,19 @@ fun AppNavigation() {
     var currentScreen by rememberSaveable { mutableStateOf("welcome") }
     var activeUserId by rememberSaveable { mutableStateOf(0) }
     var activeUserName by rememberSaveable { mutableStateOf("") }
+
+    // Manejo del botón Atrás del sistema
+    BackHandler(enabled = currentScreen != "welcome" && currentScreen != "dashboard") {
+        when (currentScreen) {
+            "login" -> currentScreen = "welcome"
+            "register" -> currentScreen = "login"
+            "forgot" -> currentScreen = "login"
+            "accounts" -> currentScreen = "dashboard"
+            "create_account" -> currentScreen = "accounts"
+            "recharge", "income", "expense", "transfer", "history", "education", "settings" -> currentScreen = "dashboard"
+            "profile" -> currentScreen = "settings"
+        }
+    }
 
     when (currentScreen) {
 

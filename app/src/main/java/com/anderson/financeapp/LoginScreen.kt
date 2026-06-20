@@ -39,7 +39,7 @@ fun LoginScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8FAFC))
+            .background(MaterialTheme.colorScheme.background)
             .padding(28.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -60,13 +60,13 @@ fun LoginScreen(
             text = "Iniciar sesión",
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF0F293D)
+            color = MaterialTheme.colorScheme.onBackground
         )
 
         Text(
             text = "Accede a tu billetera financiera",
             fontSize = 15.sp,
-            color = Color(0xFF526173)
+            color = MaterialTheme.colorScheme.onSurfaceVariant
         )
 
         Spacer(modifier = Modifier.height(30.dp))
@@ -75,7 +75,7 @@ fun LoginScreen(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(28.dp),
             colors = CardDefaults.cardColors(
-                containerColor = Color.White
+                containerColor = MaterialTheme.colorScheme.surface
             )
         ) {
             Column(
@@ -86,7 +86,13 @@ fun LoginScreen(
                     value = email,
                     onValueChange = { email = it },
                     label = { Text("Correo electrónico") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedLabelColor = MaterialTheme.colorScheme.primary,
+                        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -95,7 +101,13 @@ fun LoginScreen(
                     value = password,
                     onValueChange = { password = it },
                     label = { Text("Contraseña") },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedLabelColor = MaterialTheme.colorScheme.primary,
+                        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 )
 
                 if (message.isNotEmpty()) {
@@ -114,7 +126,7 @@ fun LoginScreen(
                 ) {
                     Text(
                         "¿Olvidaste tu contraseña?",
-                        color = Color(0xFF2563EB)
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
 
@@ -124,6 +136,8 @@ fun LoginScreen(
                     onClick = {
                         if (email.isBlank() || password.isBlank()) {
                             message = "Ingresa correo y contraseña"
+                        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches()) {
+                            message = "Ingresa un correo electrónico válido"
                         } else {
                             scope.launch {
 
@@ -155,7 +169,8 @@ fun LoginScreen(
                         .height(56.dp),
                     shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF2563EB)
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
                     )
                 ) {
                     Text("INGRESAR")
@@ -169,7 +184,7 @@ fun LoginScreen(
                 ) {
                     Text(
                         "¿No tienes cuenta? Regístrate",
-                        color = Color(0xFF2563EB)
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
             }

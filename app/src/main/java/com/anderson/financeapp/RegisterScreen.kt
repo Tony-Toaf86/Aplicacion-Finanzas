@@ -39,7 +39,7 @@ fun RegisterScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8FAFC))
+            .background(MaterialTheme.colorScheme.background)
             .padding(28.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -48,7 +48,7 @@ fun RegisterScreen(
         Box(
             modifier = Modifier
                 .size(78.dp)
-                .background(Color(0xFFEAF4FF), CircleShape),
+                .background(MaterialTheme.colorScheme.secondary, CircleShape),
             contentAlignment = Alignment.Center
         ) {
             Text(
@@ -63,7 +63,7 @@ fun RegisterScreen(
             text = "Crear cuenta",
             fontSize = 30.sp,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF0F293D),
+            color = MaterialTheme.colorScheme.onBackground,
             textAlign = TextAlign.Center
         )
 
@@ -72,7 +72,7 @@ fun RegisterScreen(
         Text(
             text = "Regístrate para comenzar a usar FINANCE",
             fontSize = 15.sp,
-            color = Color(0xFF526173),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
         )
 
@@ -81,7 +81,7 @@ fun RegisterScreen(
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(28.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(defaultElevation = 5.dp)
         ) {
             Column(modifier = Modifier.padding(20.dp)) {
@@ -91,7 +91,13 @@ fun RegisterScreen(
                     onValueChange = { fullName = it },
                     label = { Text("Nombre completo") },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedLabelColor = MaterialTheme.colorScheme.primary,
+                        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -101,7 +107,13 @@ fun RegisterScreen(
                     onValueChange = { email = it },
                     label = { Text("Correo electrónico") },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedLabelColor = MaterialTheme.colorScheme.primary,
+                        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -111,7 +123,13 @@ fun RegisterScreen(
                     onValueChange = { password = it },
                     label = { Text("Contraseña") },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedLabelColor = MaterialTheme.colorScheme.primary,
+                        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 )
 
                 Spacer(modifier = Modifier.height(14.dp))
@@ -121,7 +139,13 @@ fun RegisterScreen(
                     onValueChange = { confirmPassword = it },
                     label = { Text("Confirmar contraseña") },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(14.dp)
+                    shape = RoundedCornerShape(14.dp),
+                    colors = OutlinedTextFieldDefaults.colors(
+                        focusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        unfocusedTextColor = MaterialTheme.colorScheme.onSurface,
+                        focusedLabelColor = MaterialTheme.colorScheme.primary,
+                        unfocusedLabelColor = MaterialTheme.colorScheme.onSurfaceVariant
+                    )
                 )
 
                 if (message.isNotEmpty()) {
@@ -143,6 +167,10 @@ fun RegisterScreen(
                         when {
                             fullName.isBlank() || email.isBlank() || password.isBlank() || confirmPassword.isBlank() -> {
                                 message = "Completa todos los campos"
+                            }
+
+                            !android.util.Patterns.EMAIL_ADDRESS.matcher(email.trim()).matches() -> {
+                                message = "Ingresa un correo electrónico válido"
                             }
 
                             password != confirmPassword -> {
@@ -173,8 +201,8 @@ fun RegisterScreen(
                         .height(56.dp),
                     shape = RoundedCornerShape(16.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF2563EB),
-                        contentColor = Color.White
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
                     )
                 ) {
                     Text(
@@ -191,7 +219,7 @@ fun RegisterScreen(
                 ) {
                     Text(
                         text = "¿Ya tienes cuenta? Inicia sesión",
-                        color = Color(0xFF2563EB)
+                        color = MaterialTheme.colorScheme.primary
                     )
                 }
             }

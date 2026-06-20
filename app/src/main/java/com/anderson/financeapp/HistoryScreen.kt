@@ -50,7 +50,7 @@ fun HistoryScreen(userId: Int, onBack: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8FAFC))
+            .background(MaterialTheme.colorScheme.background)
             .padding(24.dp)
     ) {
         Row(
@@ -59,7 +59,7 @@ fun HistoryScreen(userId: Int, onBack: () -> Unit) {
             Box(
                 modifier = Modifier
                     .size(56.dp)
-                    .background(Color(0xFFEAF4FF), CircleShape),
+                    .background(MaterialTheme.colorScheme.secondary, CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Text("📋", fontSize = 26.sp)
@@ -72,13 +72,13 @@ fun HistoryScreen(userId: Int, onBack: () -> Unit) {
                     text = "Historial",
                     fontSize = 30.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF0F293D)
+                    color = MaterialTheme.colorScheme.onBackground
                 )
 
                 Text(
                     text = "Tus movimientos financieros",
                     fontSize = 15.sp,
-                    color = Color(0xFF526173)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
         }
@@ -88,7 +88,7 @@ fun HistoryScreen(userId: Int, onBack: () -> Unit) {
         Card(
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(24.dp),
-            colors = CardDefaults.cardColors(containerColor = Color.White),
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
             elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
         ) {
             Row(
@@ -123,7 +123,7 @@ fun HistoryScreen(userId: Int, onBack: () -> Unit) {
                     .fillMaxWidth()
                     .weight(1f),
                 shape = RoundedCornerShape(24.dp),
-                colors = CardDefaults.cardColors(containerColor = Color.White)
+                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
             ) {
                 Box(
                     modifier = Modifier.fillMaxSize(),
@@ -131,7 +131,7 @@ fun HistoryScreen(userId: Int, onBack: () -> Unit) {
                 ) {
                     Text(
                         text = "No hay movimientos en esta categoría.",
-                        color = Color(0xFF526173)
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             }
@@ -155,8 +155,8 @@ fun HistoryScreen(userId: Int, onBack: () -> Unit) {
                 .height(54.dp),
             shape = RoundedCornerShape(16.dp),
             colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF2563EB),
-                contentColor = Color.White
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = MaterialTheme.colorScheme.onPrimary
             )
         ) {
             Text(
@@ -183,8 +183,8 @@ fun HistoryFilterButton(
         shape = RoundedCornerShape(14.dp),
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 8.dp),
         colors = ButtonDefaults.buttonColors(
-            containerColor = if (selected) Color(0xFF2563EB) else Color(0xFFEAF4FF),
-            contentColor = if (selected) Color.White else Color(0xFF2563EB)
+            containerColor = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
+            contentColor = if (selected) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.primary
         )
     ) {
         Text(
@@ -223,7 +223,7 @@ fun HistoryMovementCard(movement: TransactionEntity) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(22.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Row(
@@ -235,7 +235,7 @@ fun HistoryMovementCard(movement: TransactionEntity) {
             Box(
                 modifier = Modifier
                     .size(48.dp)
-                    .background(Color(0xFFEAF4FF), CircleShape),
+                    .background(MaterialTheme.colorScheme.secondary, CircleShape),
                 contentAlignment = Alignment.Center
             ) {
                 Text(icon, fontSize = 24.sp)
@@ -247,7 +247,7 @@ fun HistoryMovementCard(movement: TransactionEntity) {
                 Text(
                     text = movement.title,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF0F293D)
+                    color = MaterialTheme.colorScheme.onSurface
                 )
 
                 Spacer(modifier = Modifier.height(3.dp))
@@ -255,7 +255,7 @@ fun HistoryMovementCard(movement: TransactionEntity) {
                 Text(
                     text = "${movement.type} · ${movement.date}",
                     fontSize = 13.sp,
-                    color = Color(0xFF526173)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 

@@ -59,7 +59,7 @@ fun DashboardScreen(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF8FAFC))
+            .background(MaterialTheme.colorScheme.background)
             .padding(22.dp)
     ) {
         item {
@@ -67,13 +67,13 @@ fun DashboardScreen(
                 text = "Hola $userName 👋",
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF0F293D)
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Text(
                 text = "Bienvenido a FINANCE",
                 fontSize = 15.sp,
-                color = Color(0xFF526173)
+                color = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
             Spacer(modifier = Modifier.height(22.dp))
@@ -88,7 +88,7 @@ fun DashboardScreen(
                         .background(
                             Brush.linearGradient(
                                 colors = listOf(
-                                    Color(0xFF2563EB),
+                                    MaterialTheme.colorScheme.primary,
                                     Color(0xFF0F76B8)
                                 )
                             )
@@ -99,7 +99,7 @@ fun DashboardScreen(
                         Text(
                             text = "Balance total",
                             fontSize = 16.sp,
-                            color = Color.White
+                            color = MaterialTheme.colorScheme.onPrimary
                         )
 
                         Spacer(modifier = Modifier.height(8.dp))
@@ -108,7 +108,7 @@ fun DashboardScreen(
                             text = "L ${String.format("%.2f", balance)}",
                             fontSize = 38.sp,
                             fontWeight = FontWeight.Bold,
-                            color = Color.White
+                            color = MaterialTheme.colorScheme.onPrimary
                         )
 
                         Spacer(modifier = Modifier.height(10.dp))
@@ -116,7 +116,7 @@ fun DashboardScreen(
                         Text(
                             text = "$totalAccounts cuentas activas",
                             fontSize = 14.sp,
-                            color = Color(0xFFEAF4FF)
+                            color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.8f)
                         )
                     }
                 }
@@ -128,7 +128,7 @@ fun DashboardScreen(
                 text = "Acciones rápidas",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF0F293D)
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -147,7 +147,7 @@ fun DashboardScreen(
                 text = "Movimientos",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF0F293D)
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -166,7 +166,7 @@ fun DashboardScreen(
                 text = "Últimos movimientos",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF0F293D)
+                color = MaterialTheme.colorScheme.onBackground
             )
 
             Spacer(modifier = Modifier.height(12.dp))
@@ -175,12 +175,12 @@ fun DashboardScreen(
                 Card(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(20.dp),
-                    colors = CardDefaults.cardColors(containerColor = Color.White)
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
                 ) {
                     Text(
                         text = "Aún no tienes movimientos registrados.",
                         modifier = Modifier.padding(18.dp),
-                        color = Color(0xFF526173)
+                        color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 }
             } else {
@@ -196,7 +196,7 @@ fun DashboardScreen(
                 modifier = Modifier.fillMaxWidth(),
                 shape = RoundedCornerShape(22.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = Color.White
+                    containerColor = MaterialTheme.colorScheme.surface
                 ),
                 elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
             ) {
@@ -249,7 +249,7 @@ fun DashboardActionCard(
         onClick = onClick,
         modifier = modifier.height(96.dp),
         shape = RoundedCornerShape(22.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(
@@ -264,7 +264,7 @@ fun DashboardActionCard(
             Text(
                 text = title,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF0F293D),
+                color = MaterialTheme.colorScheme.onSurface,
                 fontSize = 13.sp
             )
         }
@@ -282,7 +282,7 @@ fun DashboardWideCard(
         onClick = onClick,
         modifier = modifier.height(72.dp),
         shape = RoundedCornerShape(20.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
     ) {
         Row(
@@ -296,7 +296,7 @@ fun DashboardWideCard(
             Text(
                 text = title,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF0F293D)
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
     }
@@ -324,7 +324,7 @@ fun RecentMovementCard(movement: TransactionEntity) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(18.dp),
-        colors = CardDefaults.cardColors(containerColor = Color.White),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
     ) {
         Row(
@@ -341,13 +341,13 @@ fun RecentMovementCard(movement: TransactionEntity) {
                 Text(
                     text = movement.title,
                     fontWeight = FontWeight.Bold,
-                    color = Color(0xFF0F293D)
+                    color = MaterialTheme.colorScheme.onSurface
                 )
 
                 Text(
                     text = movement.date,
                     fontSize = 13.sp,
-                    color = Color(0xFF526173)
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
             }
 
@@ -380,7 +380,7 @@ fun BottomNavItem(
             Text(
                 text = text,
                 fontSize = 12.sp,
-                color = Color(0xFF0F293D)
+                color = MaterialTheme.colorScheme.onSurface
             )
         }
     }
